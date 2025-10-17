@@ -31,6 +31,8 @@ pip install streamlit tempfile threading mutagen.mp3
 - Download predictor and put it in the project folder:
 > Download **shape_predictor_68_face_landmarks.dat** via https://www.kaggle.com/datasets/sergiovirahonda/shape-predictor-68-face-landmarksdat
 
+### API setup
+- Create _.env_ file and put your own open AI API_key 
 
 ### How to Run
 
@@ -53,6 +55,7 @@ class EyeTracker:
 
 ````
 > If the program cannot find the _predictor_path_ you can use the **absolute path** instead.
+
 
 
 
