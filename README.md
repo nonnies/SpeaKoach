@@ -28,6 +28,10 @@ pip install playsound sounddevice scipy
 
 pip install streamlit tempfile threading mutagen.mp3
 ```
+- Download predictor and put it in the project folder:
+> Download **shape_predictor_68_face_landmarks.dat** via https://www.kaggle.com/datasets/sergiovirahonda/shape-predictor-68-face-landmarksdat
+
+
 ### How to Run
 
 In **_anacoda prompt Shell_** :
@@ -49,5 +53,6 @@ class EyeTracker:
 
 ````
 > If the program cannot find the _predictor_path_ you can use the **absolute path** instead.
+
 
 
