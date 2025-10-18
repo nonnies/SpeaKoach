@@ -1,7 +1,6 @@
 import time
 import sounddevice as sd
 from scipy.io.wavfile import write
-import playsound
 from interviewlogic import client
 import os
 import streamlit as st
@@ -49,7 +48,3 @@ class AudioLOGIC:
         """, unsafe_allow_html=True)
         time.sleep(duration)
 
-
-
-        # Play it
-        #playsound.playsound(filename)
