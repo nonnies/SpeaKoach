@@ -6,7 +6,7 @@ import threading
 
 
 class EyeTracker:
-    def __init__(self, video_src=1, predictor_path="C:/Users/asus/PycharmProjects/spekoach/shape_predictor_68_face_landmarks.dat", display=True):
+    def __init__(self, video_src=1, predictor_path="shape_predictor_68_face_landmarks.dat", display=True):
         self.cap = cv2.VideoCapture(video_src)
         self.detector = dlib.get_frontal_face_detector()
         self.predictor = dlib.shape_predictor(predictor_path)
@@ -148,3 +148,4 @@ class EyeTracker:
         cv2.destroyAllWindows()
 
         self.running = False
+
