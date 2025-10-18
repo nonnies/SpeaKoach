@@ -5,7 +5,6 @@ import time
 import threading
 
 
-
 class EyeTracker:
     def __init__(self, video_src=1, predictor_path="C:/Users/asus/PycharmProjects/spekoach/shape_predictor_68_face_landmarks.dat", display=True):
         self.cap = cv2.VideoCapture(video_src)
@@ -64,7 +63,7 @@ class EyeTracker:
         thresh = 40
         _, threshold_eye = cv2.threshold(masked_eye, thresh, 255, cv2.THRESH_BINARY)
         brightness = np.mean(threshold_eye)
-        #print(f"Brightness: {brightness:.2f}")
+
         thresh = thresh_cali(brightness)
         _, threshold_eye = cv2.threshold(masked_eye, thresh, 255, cv2.THRESH_BINARY)
 
@@ -78,21 +77,10 @@ class EyeTracker:
             gaze_ratio = float('inf')  # treat as extreme left if no white on right
         else:
             gaze_ratio = left_side_white / right_side_white
-
-        # resized debug windows
-        left_side_threshold = cv2.resize(left_side_threshold, None, fx=5, fy=5)
-        right_side_threshold = cv2.resize(right_side_threshold, None, fx=5, fy=5)
-        eye_vis = cv2.resize(masked_eye, None, fx=5, fy=5)
-        threshold_vis = cv2.resize(threshold_eye, None, fx=5, fy=5)
-
-        #cv2.putText(self.frame, f"Thresh:{thresh}", (50, 300), self.font, 2, (0, 0, 255))
-        #cv2.imshow("Threshold", threshold_vis)
-        #if self.display:
-            #cv2.putText(self.frame, f"Thresh:{thresh}", (50, 300), self.font, 2, (0, 0, 255))
-            #cv2.imshow("Threshold", threshold_vis)
-
+            
         return gaze_ratio
 
+        
     def start_tracking(self):
         while self.running:
             ret, frame = self.cap.read()
@@ -137,9 +125,6 @@ class EyeTracker:
                     cv2.putText(frame, "Don't have eye contact", (50, 150), self.font, 2, (255, 0, 0))
                     self.left_count += 1
 
-                #cv2.putText(frame, f"{gaze_ratio:.2f}", (50, 200), self.font, 2, (0, 0, 255), 3)
-                #cv2.putText(frame, str(self.center_count), (50, 100), self.font, 3, (255, 0, 0))
-
             cv2.imshow("frame", frame)
 
 
@@ -152,7 +137,6 @@ class EyeTracker:
                # when running headless (no GUI) yield CPU and let external code stop tracker.running
                 time.sleep(0.01)
             
-            
 
         total_count = self.center_count + self.left_count + self.right_count
         if total_count == 0:
@@ -160,11 +144,7 @@ class EyeTracker:
         else:
             self.gaze_score_ratio = (self.center_count / total_count) * 100
 
-        #print("center count =", self.center_count)
-        #print("left count =", self.left_count)
-        #print("right count =", self.right_count)
-        #print(f"Eye contact percentage {self.gaze_score_ratio:.1f}%")
-
         self.cap.release()
         cv2.destroyAllWindows()
+
         self.running = False
