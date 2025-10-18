@@ -24,9 +24,9 @@ pip install opencv-python-headless==3.4.18.65
 
 pip install opencv-contrib-python==3.4.18.65
 
-pip install playsound sounddevice scipy
+pip install sounddevice scipy PyPDF2
 
-pip install streamlit tempfile threading mutagen.mp3
+pip install streamlit tempfile threading mutagen
 ```
 - Download predictor and put it in the project folder:
 > Download **shape_predictor_68_face_landmarks.dat** via https://www.kaggle.com/datasets/sergiovirahonda/shape-predictor-68-face-landmarksdat
@@ -55,6 +55,7 @@ class EyeTracker:
 
 ````
 > If the program cannot find the _predictor_path_ you can use the **absolute path** instead.
+
 
 
 
